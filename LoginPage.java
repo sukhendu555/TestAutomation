@@ -28,10 +28,10 @@ public class LoginPage extends BasePage {
 	
 	
 	private WebDriver driver;
-	@FindBy(xpath="//input[@name='login']")
+	@FindBy(xpath="//*[@id='login']")
 	WebElement frstusrname;
 	
-	@FindBy(xpath="//*[@id='vpnForm']/div[3]/div[2]/input")
+	@FindBy(xpath="//*[@id='passwd']")
 	WebElement frstPass;
 	
 	@FindBy(xpath="//*[@id='Log_On']")
@@ -65,6 +65,7 @@ public class LoginPage extends BasePage {
 	
 	@SuppressWarnings("unchecked")
 	public void applicationLogin() throws FileNotFoundException, InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		SoftAssert softAssert = new SoftAssert();
 		
 		   
@@ -74,7 +75,7 @@ public class LoginPage extends BasePage {
 
 		
 		
-		String str = driver.findElement(By.cssSelector("#main-content > div:nth-child(2) > div > h1")).getText();
+		String str = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"main-content\"]//h1"))).getText();
 		softAssert.assertEquals("Sign in",str);
 		System.out.println("Pass:signin page verified"+str);
 		
