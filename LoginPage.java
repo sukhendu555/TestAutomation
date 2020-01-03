@@ -76,7 +76,7 @@ public class LoginPage extends BasePage {
 		
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@title ='sign_in']")));
 		driver.switchTo().frame(element);
-		
+		Thread.sleep(2000);
 		String str = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"main-content\"]//h1"))).getText();
 		softAssert.assertEquals("Sign in",str);
 		System.out.println("Pass:signin page verified"+str);
