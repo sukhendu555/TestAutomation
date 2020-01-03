@@ -74,9 +74,8 @@ public class LoginPage extends BasePage {
 		clickonElement(driver,loginButton,"Pass: user able to click on login button","Fail not able to click login ");
 
 		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class = 'sign_in_div']")));
-		Thread.sleep(2000);
-		driver.switchTo().frame(driver.findElement(By.xpath("//*[@title= 'sign_in']")));
+		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@title ='sign_in']")));
+		driver.switchTo().frame(element);
 		
 		String str = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"main-content\"]//h1"))).getText();
 		softAssert.assertEquals("Sign in",str);
