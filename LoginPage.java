@@ -92,7 +92,7 @@ public class LoginPage extends BasePage {
 		driver.switchTo().parentFrame();
 		boolean secretQuestionIsPresent = false;
 		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Secret Question']")));
+			new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Secret Question']")));
 			secretQuestionIsPresent = true;
 		}catch (Exception e) {
 			System.out.println("Secret Question was not asked");
