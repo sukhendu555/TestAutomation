@@ -89,21 +89,31 @@ public class LoginPage extends BasePage {
 		setElement(driver,Secondusrname,hTable.get("MTN"),"pass user able to enter MDN","Fial:User unable enter MDN number");
 		setElement(driver,Scondpswd,hTable.get("Pass"),"Pass user able to ener password","Fail user unbale to enter password");
 		clickonElement(driver,SignIn,"Pass: user ablt to click Sign in button","Fail: user unable to click Sign in button");
-		//setElement(driver,txtsecretename,hTable.get("Secrete"),"Pass user able to enter secret answer","Fail: user not able to enter secrete answer");
-		//clickonElement(driver,clickon_continue,"Pass: user able to click on continue button","Fail: user unable to click on continue button");
-	//	String str2 = driver.findElement(By.xpath("//*[@id='main-content']/div[2]/div[1]/p[1]/text()")).getText();
-	//	System.out.println("Pass:Secrete Question/Answer Page verified"+str2);
-	//	softAssert.assertEquals("We don't recognize the device you're using. Please verify your User ID, then answer the secret question.",str2);
-       // String str3 =driver.findElement(By.cssSelector("#accordion__heading-accountinfo > span.sc-dUjcNx.jWNMGb")).getText();
-     //   System.out.println("Pass:PersonalInformation verified"+str3);	
-		 //softAssert.assertAll();
-
+		driver.switchTo().parentFrame();
+		boolean secretQuestionIsPresent = false;
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Secret Question']")));
+			secretQuestionIsPresent = true;
+		}catch (Exception e) {
+			System.out.println("Secret Question was not asked");
+		}
+		if (secretQuestionIsPresent) {
+			driver.findElement(By.xpath("//*[@id='IDToken1']")).sendKeys("cancun");
+			driver.findElement(By.xpath("//*[@id='otherButton']")).click();
+			String str2 = driver.findElement(By.xpath("//*[@id='main-content']/div[2]/div[1]/p[1]/text()")).getText();
+			System.out.println("Pass:Secrete Question/Answer Page verified"+str2);
+			softAssert.assertEquals("We don't recognize the device you're using. Please verify your User ID, then answer the secret question.",str2);
+			setElement(driver,txtsecretename,hTable.get("Secrete"),"Pass user able to enter secret answer","Fail: user not able to enter secrete answer");
+			clickonElement(driver,clickon_continue,"Pass: user able to click on continue button","Fail: user unable to click on continue button");
+//			String str3 =driver.findElement(By.cssSelector("#accordion__heading-accountinfo > span.sc-dUjcNx.jWNMGb")).getText();
+//	        System.out.println("Pass:PersonalInformation verified"+str3);	
+//			 softAssert.assertAll();
+		}
 		}catch(Exception e) {
 			e.printStackTrace();
 			captureScreenshotPage((Map<String, String>) driver,"page");	
 
 		}
-		driver.switchTo().parentFrame();
 		
 	}
 	

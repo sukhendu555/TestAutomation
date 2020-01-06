@@ -101,7 +101,10 @@ public class VpdLandingpagePreview extends BasePage {
 				}
 				System.out.println("S1 : " + s1);
 				System.out.println("S2 : " + s2);
-				Datattest.createHeader(s1);
+				if (TestClass.insertHeader) {
+					Datattest.createHeader(s1);
+					TestClass.insertHeader = false;
+				}
 				Datattest.updateResultsSummary2(s2);
 			}
 		}	

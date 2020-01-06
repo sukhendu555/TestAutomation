@@ -28,6 +28,7 @@ import com.vzw.pos.automation.utilities.TestDataProvider;
 
 public class TestClass<initiateBrowserFromGrid> extends AbstractClass implements ITest{
 
+	public static boolean insertHeader = true;
 	private Logger logger = LoggerFactory.getLogger(TestClass.class);
 	Hashtable<String, String> hTable;
 	@Factory(dataProviderClass = TestDataProvider.class, dataProvider = "testScenarios")
